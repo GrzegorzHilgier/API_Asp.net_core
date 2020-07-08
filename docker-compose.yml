@@ -1,0 +1,39 @@
+version: '3.7'
+
+networks:
+    localdev:
+        name: localdev
+
+services:
+    main-api:
+        build: src/REST_API/
+        environment:
+            - COMPOSE_CONVERT_WINDOWS_PATHS=1
+            - ASPNETCORE_HTTPS_PORT=7001 
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=https://+:443;http://+:80
+            - ASPNETCORE_Kestrel__Certificates__Default__Password=admin1234sslpassword
+            - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
+        #restart: always
+        ports:
+            - "7000:80"
+            - "7001:443"
+        volumes:
+            - ~/.aspnet/https:/https:ro
+#        depends_on:
+#            - db-server
+        networks:
+            - localdev
+            
+#    db-server:
+#        image: microsoft/mssql-server-linux:2017-latest
+#        container_name: db-server
+#        environment:
+#           - ACCEPT_EULA=Y
+#           - MSSQL_SA_PASSWORD=admin1234!
+#            - MSSQL_TCP_PORT=1433
+#        ports:
+#        - "1400:1433"
+#        networks:
+#        - localdev
+        
