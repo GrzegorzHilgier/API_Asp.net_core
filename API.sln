@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{25F75D78-6F79-4847-A1F6-263F5355AC72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FFD3592E-B164-453E-8A8D-FA9C7A9B6953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "tests\Infrastructure.Tests\Infrastructure.Tests.csproj", "{361D72EB-1E95-4C89-8E7B-861543D06CFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +54,30 @@ Global
 		{D2388850-50EA-456B-8BE8-E3A86A845E11}.Release|x64.Build.0 = Release|Any CPU
 		{D2388850-50EA-456B-8BE8-E3A86A845E11}.Release|x86.ActiveCfg = Release|Any CPU
 		{D2388850-50EA-456B-8BE8-E3A86A845E11}.Release|x86.Build.0 = Release|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Debug|x64.Build.0 = Debug|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Debug|x86.Build.0 = Debug|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Release|x64.ActiveCfg = Release|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Release|x64.Build.0 = Release|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Release|x86.ActiveCfg = Release|Any CPU
+		{25F75D78-6F79-4847-A1F6-263F5355AC72}.Release|x86.Build.0 = Release|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Debug|x64.Build.0 = Debug|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Debug|x86.Build.0 = Debug|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Release|x64.ActiveCfg = Release|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Release|x64.Build.0 = Release|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Release|x86.ActiveCfg = Release|Any CPU
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +85,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{653F296C-0F85-4885-A903-3824C2E10F8B} = {4490A7AE-8BFA-43C4-ABBB-A711C4CA4D69}
 		{D2388850-50EA-456B-8BE8-E3A86A845E11} = {4490A7AE-8BFA-43C4-ABBB-A711C4CA4D69}
+		{25F75D78-6F79-4847-A1F6-263F5355AC72} = {4490A7AE-8BFA-43C4-ABBB-A711C4CA4D69}
+		{361D72EB-1E95-4C89-8E7B-861543D06CFE} = {FFD3592E-B164-453E-8A8D-FA9C7A9B6953}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E634D89D-FA0B-4BD9-924F-12B609F57B1D}
