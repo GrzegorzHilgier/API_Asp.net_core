@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,7 @@ namespace REST_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEFInfrastructure(Configuration.GetSection("DataSource:ConnectionString").Value);
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
         }
 
