@@ -28,7 +28,7 @@ namespace REST_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCatalogContext(Configuration.GetSection("DataSource:ConnectionString").Value);
+            services.AddEFInfrastructure(Configuration.GetSection("DataSource:ConnectionString").Value);
             services.AddControllers();
         }
 

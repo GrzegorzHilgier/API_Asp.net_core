@@ -48,5 +48,10 @@ namespace Infrastructure.Repositories
             _context.Entry(item).State = EntityState.Modified;
             return item;
         }
+
+        public Item Delete(Item item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
