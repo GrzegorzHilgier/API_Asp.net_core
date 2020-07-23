@@ -16,6 +16,8 @@ namespace REST_API.Extensions
         public static IServiceCollection AddDomainServices(this IServiceCollection services)
         {
             services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IArtistService, ArtistService>();
+            services.AddScoped<IGenreService, GenreService>();
             return services;
         }
 

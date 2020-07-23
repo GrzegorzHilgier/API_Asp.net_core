@@ -8,7 +8,6 @@ using Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using REST_API.Filters;
-using REST_API.Utilities;
 
 namespace REST_API.Controllers
 {

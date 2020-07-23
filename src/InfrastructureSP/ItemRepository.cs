@@ -29,7 +29,20 @@ namespace InfrastructureSP
 
         public async Task<IEnumerable<Item>> GetAsync(int pageSize, int pageIndex)
         {
-            throw new NotImplementedException();
+            var result = await _sqlConnection.QueryAsync<Item>("GetAllItems", commandType: CommandType.StoredProcedure);
+            return result.AsList();
+        }
+
+        public async Task<IEnumerable<Item>> GetItemByArtistIdAsync(Guid id)
+        {
+            var result = await _sqlConnection.QueryAsync<Item>("GetAllItems", commandType: CommandType.StoredProcedure);
+            return result.AsList();
+        }
+
+        public async Task<IEnumerable<Item>> GetItemByGenreIdAsync(Guid id)
+        {
+            var result = await _sqlConnection.QueryAsync<Item>("GetAllItems", commandType: CommandType.StoredProcedure);
+            return result.AsList();
         }
 
         public async Task<Item> GetAsync(Guid id)

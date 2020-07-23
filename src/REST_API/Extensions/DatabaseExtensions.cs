@@ -25,6 +25,8 @@ namespace REST_API.Extensions
                         serverOptions => { serverOptions.MigrationsAssembly(typeof(Startup).Assembly.FullName); });
                 });
             services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IArtistRepository, ArtistRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
             return services;
         }
 
