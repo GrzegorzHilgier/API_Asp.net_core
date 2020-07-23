@@ -8,7 +8,7 @@ using Domain.Requests.Genre;
 using Domain.Services;
 using FluentValidation;
 
-namespace Domain.Requests.Item.validators
+namespace Domain.Requests.Item.Validators
 {
     public class EditItemRequestValidator : AbstractValidator<EditItemRequest>
     {

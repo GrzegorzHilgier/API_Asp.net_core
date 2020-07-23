@@ -5,7 +5,7 @@ using Domain.Entities;
 using Domain.Requests.Artist;
 using Domain.Requests.Genre;
 using Domain.Requests.Item;
-using Domain.Requests.Item.validators;
+using Domain.Requests.Item.Validators;
 using Domain.Responses.Item;
 using Domain.Services;
 using FluentValidation.TestHelper;

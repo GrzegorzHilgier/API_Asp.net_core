@@ -11,8 +11,9 @@ using REST_API.Filters;
 
 namespace REST_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Items")]
     [ApiController]
+    [JsonException]
     public class ItemsController : ControllerBase
     {
         private readonly IItemService _itemService;
@@ -23,7 +24,7 @@ namespace REST_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int pageSize = 10, int pageIndex = 0)
+        public async Task<IActionResult> Get([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
         {
             var result = await _itemService.GetItemsAsync(pageSize, pageIndex);
             return Ok(result);
