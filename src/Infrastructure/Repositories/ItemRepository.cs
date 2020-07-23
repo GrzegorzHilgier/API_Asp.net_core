@@ -18,12 +18,26 @@ namespace Infrastructure.Repositories
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+
+        public long Count => _context.Items.Count();
+
         public async Task<IEnumerable<Item>> GetAsync()
         {
             return await _context
                         .Items
                         .AsNoTracking()
                         .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Item>> GetAsync(int pageSize, int pageIndex)
+        {
+            return await _context
+                .Items
+                .OrderBy(c => c.Name)
+                .Skip(pageSize * pageIndex)
+                .Take(pageSize)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Item> GetAsync(Guid id)

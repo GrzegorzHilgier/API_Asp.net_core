@@ -10,19 +10,26 @@ using Microsoft.Data.SqlClient;
 
 namespace InfrastructureSP
 {
-    public class ItemRepository : IItemRepository
+    public class ItemRepositorySP : IItemRepository
     {
         private readonly SqlConnection _sqlConnection;
 
-        public ItemRepository(string connectionString)
+        public ItemRepositorySP(string connectionString)
         {
             _sqlConnection = new SqlConnection(connectionString);
         }
         public IUnitOfWork UnitOfWork { get; }
+        public long Count { get; }
+
         public async Task<IEnumerable<Item>> GetAsync()
         {
             var result = await _sqlConnection.QueryAsync<Item>("GetAllItems", commandType: CommandType.StoredProcedure);
             return result.AsList();
+        }
+
+        public async Task<IEnumerable<Item>> GetAsync(int pageSize, int pageIndex)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Item> GetAsync(Guid id)

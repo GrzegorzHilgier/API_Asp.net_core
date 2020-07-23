@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Infrastructure;
 using Infrastructure.Tests.Extensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Tests
+namespace Fixtures
 {
-    class TestCatalogContext : CatalogContext
+    public class TestCatalogContext : CatalogContext
     {
         public TestCatalogContext(DbContextOptions<CatalogContext> options) : base(options) {}
 

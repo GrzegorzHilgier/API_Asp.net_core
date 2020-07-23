@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Responses.Item
 {
-    class ArtistResponse
+    public class ArtistResponse
     {
         public Guid ArtistId { get; set; }
         public string ArtistName { get; set; }

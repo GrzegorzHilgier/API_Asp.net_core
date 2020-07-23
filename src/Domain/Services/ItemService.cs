@@ -21,10 +21,21 @@ namespace Domain.Services
             _itemRepository = itemRepository;
             _itemMapper = itemMapper;
         }
+
         public async Task<IEnumerable<ItemResponse>> GetItemsAsync()
         {
             var result = await _itemRepository.GetAsync();
             return result.Select(x => _itemMapper.Map<ItemResponse>(x));
+        }
+
+        public async Task<PaginatedEntity<ItemResponse>> GetItemsAsync(int pageSize, int pageIndex)
+        {
+            var data = await _itemRepository.GetAsync(pageSize, pageIndex);
+            return new PaginatedEntity<ItemResponse>(
+                pageIndex, 
+                pageSize, 
+                _itemRepository.Count, 
+                data.Select(x => _itemMapper.Map<ItemResponse>(x)));
         }
 
         public async Task<ItemResponse> GetItemAsync(GetItemRequest request)

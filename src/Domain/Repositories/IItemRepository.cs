@@ -9,7 +9,9 @@ namespace Domain.Repositories
 {
     public interface IItemRepository : IRepository
     {
+        public long Count { get; }
         public Task<IEnumerable<Item>> GetAsync();
+        public Task<IEnumerable<Item>> GetAsync(int pageSize, int pageIndex);
         Task<Item> GetAsync(Guid id);
         Item Add(Item item);
         Item Update(Item item);

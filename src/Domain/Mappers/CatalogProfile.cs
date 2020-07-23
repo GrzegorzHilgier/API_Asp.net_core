@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace Domain.Mappers
 {
-    class CatalogProfile : Profile
+    public class CatalogProfile : Profile
     {
         public CatalogProfile()
         {

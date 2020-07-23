@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Responses.Item
 {
-    class GenreResponse
+    public class GenreResponse
     {
         public Guid GenreId { get; set; }
         public string GenreDescription { get; set; }
