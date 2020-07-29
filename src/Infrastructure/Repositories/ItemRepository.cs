@@ -25,6 +25,7 @@ namespace Infrastructure.Repositories
         {
             return await _context
                         .Items
+                        .Where(x => !x.IsDeleted)
                         .AsNoTracking()
                         .ToListAsync();
         }
@@ -33,6 +34,7 @@ namespace Infrastructure.Repositories
         {
             return await _context
                 .Items
+                .Where(x => !x.IsDeleted)
                 .OrderBy(c => c.Name)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
@@ -44,7 +46,7 @@ namespace Infrastructure.Repositories
         {
             var item = await _context.Items
                 .AsNoTracking()
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == id && !x.IsDeleted)
                 .Include(x => x.Genre)
                 .Include(x => x.Artist)
                 .FirstOrDefaultAsync();

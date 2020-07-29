@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,23 @@ namespace API.Tests
     public class ItemControllerTests : IClassFixture<InMemoryApplicationFactory<Startup>>
     {
         private readonly InMemoryApplicationFactory<Startup> _factory;
+        private readonly AddItemRequest _addItemRequest;
 
         public ItemControllerTests(InMemoryApplicationFactory<Startup> factory)
         {
             _factory = factory;
+            _addItemRequest = new AddItemRequest
+            {
+                Name = "Test album",
+                Description = "Description",
+                LabelName = "Label name",
+                Price = new Price {Amount = 13, Currency = "EUR"},
+                PictureUri = "https://mycdn.com/pictures/32423423",
+                ReleaseDate = DateTimeOffset.Now,
+                AvailableStock = 6,
+                GenreId = new Guid("c04f05c0-f6ad-44d1-a400-3375bfb5dfd6"),
+                ArtistId = new Guid("f08a333d-30db-4dd1-b8ba-3b0473c7cdab")
+            };
         }
 
         [Theory]
@@ -40,7 +54,7 @@ namespace API.Tests
             var response = await client.GetAsync($"/api/items/{id}");
             response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
-            var responseEntity = JsonConvert.DeserializeObject<Item>(responseContent);
+            var responseEntity = JsonConvert.DeserializeObject<ItemResponse>(responseContent);
             Assert.NotNull(responseEntity);
             Assert.Equal(id, responseEntity.Id.ToString());
         }
@@ -66,20 +80,8 @@ namespace API.Tests
         [Fact]
         public async Task Add_should_create_new_record()
         {
-            var request = new AddItemRequest
-            {
-                Name = "Test album",
-                Description = "Description",
-                LabelName = "Label name",
-                Price = new Price {Amount = 13, Currency = "EUR"},
-                PictureUri = "https://mycdn.com/pictures/32423423",
-                ReleaseDate = DateTimeOffset.Now,
-                AvailableStock = 6,
-                GenreId = new Guid("c04f05c0-f6ad-44d1-a400-3375bfb5dfd6"),
-                ArtistId = new Guid("f08a333d-30db-4dd1-b8ba-3b0473c7cdab")
-            };
             var client = _factory.CreateClient();
-            var httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            var httpContent = new StringContent(JsonConvert.SerializeObject(_addItemRequest), Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"/api/items", httpContent);
             response.EnsureSuccessStatusCode();
             Assert.NotNull(response.Headers.Location);
@@ -111,6 +113,25 @@ namespace API.Tests
             Assert.Equal(request.Description, responseEntity.Description);
             Assert.Equal(request.GenreId, responseEntity.GenreId);
             Assert.Equal(request.ArtistId, responseEntity.ArtistId);
+        }
+
+        [Fact]
+        public async Task delete_should_returns_not_found_when_called_with_not_existing_id()
+        {
+            var client = _factory.CreateClient();
+            var response = await
+                client.DeleteAsync($"/api/items/{Guid.NewGuid()}");
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("86bff4f7-05a7-46b6-ba73-d43e2c45840f")]
+        public async Task delete_should_returns_no_content_when_called_with_right_id(string id)
+        {
+            var client = _factory.CreateClient();
+            var deleteResponse = await client.DeleteAsync($"/api/items/{id}");
+
+            Assert.Equal(HttpStatusCode.NoContent, deleteResponse.StatusCode);
         }
     }
 }

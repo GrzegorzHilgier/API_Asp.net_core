@@ -15,6 +15,6 @@ namespace Domain.Services
         Task<ItemResponse> GetItemAsync(GetItemRequest request);
         Task<ItemResponse> AddItemAsync(AddItemRequest request);
         Task<ItemResponse> EditItemAsync(EditItemRequest request);
-        //Task<ItemResponse> DeleteItemAsync(DeleteItemRequest request);
+        Task<ItemResponse> DeleteItemAsync(DeleteItemRequest request);
     }
 }

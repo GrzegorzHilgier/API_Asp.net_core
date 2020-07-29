@@ -53,5 +53,14 @@ namespace REST_API.Controllers
             var result = await _itemService.EditItemAsync(request);
             return Ok(result);
         }
+
+        [HttpDelete("{id:guid}")]
+        [ItemExists]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var request = new DeleteItemRequest{ Id = id};
+            await _itemService.DeleteItemAsync(request);
+            return NoContent();
+        }
     }
 }
