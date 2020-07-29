@@ -133,5 +133,18 @@ namespace API.Tests
 
             Assert.Equal(HttpStatusCode.NoContent, deleteResponse.StatusCode);
         }
+
+        [Theory]
+        [InlineData("/api/items/?pageSize=1&pageIndex=0")]
+        [InlineData("/api/artist/?pageSize=1&pageIndex=0")]
+        [InlineData("/api/genre/?pageSize=1&pageIndex=0")]
+        public async Task
+            middleware_should_set_the_correct_response_time_custom_header(string url)
+        {
+            var client = _factory.CreateClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            Assert.NotNull(response.Headers.GetValues("X-Response-Time-ms"));
+        }
     }
 }
