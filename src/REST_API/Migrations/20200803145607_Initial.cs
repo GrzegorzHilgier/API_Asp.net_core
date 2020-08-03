@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace REST_API.Migrations
 {
-    public partial class InitMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,8 @@ namespace REST_API.Migrations
                     Format = table.Column<string>(nullable: true),
                     AvailableStock = table.Column<int>(nullable: false),
                     GenreId = table.Column<Guid>(nullable: false),
-                    ArtistId = table.Column<Guid>(nullable: false)
+                    ArtistId = table.Column<Guid>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

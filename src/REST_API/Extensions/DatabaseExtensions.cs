@@ -17,7 +17,6 @@ namespace REST_API.Extensions
         public static IServiceCollection AddEFInfrastructure(this IServiceCollection services, string connectionString)
         {
             services
-                .AddEntityFrameworkSqlServer()
                 .AddDbContext<CatalogContext>(contextOptions =>
                 {
                     contextOptions.UseSqlServer(

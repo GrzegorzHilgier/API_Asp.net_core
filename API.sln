@@ -11,7 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FF4DF51-1C4C-4A9F-8DC4-40984EF85B73}"
 	ProjectSection(SolutionItems) = preProject
+		containers\api\.env = containers\api\.env
+		.env = .env
 		docker-compose.yml = docker-compose.yml
+		containers\api\Dockerfile = containers\api\Dockerfile
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{25F75D78-6F79-4847-A1F6-263F5355AC72}"

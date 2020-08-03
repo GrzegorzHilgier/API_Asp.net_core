@@ -1,39 +1,34 @@
-version: '3.7'
+version: "3.7"
 
 networks:
     localdev:
         name: localdev
+        driver: bridge
 
 services:
-    main-api:
-        build: src/REST_API/
-        environment:
-            - COMPOSE_CONVERT_WINDOWS_PATHS=1
-            - ASPNETCORE_HTTPS_PORT=7001 
-            - ASPNETCORE_ENVIRONMENT=Development
-            - ASPNETCORE_URLS=https://+:443;http://+:80
-            - ASPNETCORE_Kestrel__Certificates__Default__Password=admin1234sslpassword
-            - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
-        #restart: always
+    catalog_api:
+        container_name: api
+        build:
+            context: .
+            dockerfile: containers/api/Dockerfile
+        env_file: 
+            - containers/api/.env
+        networks: 
+            - localdev
         ports:
-            - "7000:80"
-            - "7001:443"
+            - 5000:5000
+            - 5001:5001
         volumes:
             - ~/.aspnet/https:/https:ro
-#        depends_on:
-#            - db-server
+        depends_on:
+            - mssql
+
+    mssql:
+        image: mssql
+        container_name: mssql
+        ports:
+            - 1433:1433
         networks:
             - localdev
-            
-#    db-server:
-#        image: microsoft/mssql-server-linux:2017-latest
-#        container_name: db-server
-#        environment:
-#           - ACCEPT_EULA=Y
-#           - MSSQL_SA_PASSWORD=admin1234!
-#            - MSSQL_TCP_PORT=1433
-#        ports:
-#        - "1400:1433"
-#        networks:
-#        - localdev
+
         
