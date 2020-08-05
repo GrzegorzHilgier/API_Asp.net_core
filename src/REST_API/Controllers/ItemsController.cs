@@ -43,15 +43,29 @@ namespace REST_API.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Gets single item by Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:guid}")]
         [ItemExists]
         [ApiConventionMethod(typeof(ItemAPIConvention), nameof(ItemAPIConvention.GetById))]
         public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _itemService.GetItemAsync(new GetItemRequest {Id = id});
+            if (result == null)
+            {
+                return NotFound();
+            }
             return Ok(result);
         }
 
+        /// <summary>
+        /// Creates new Item.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [ApiConventionMethod(typeof(ItemAPIConvention), nameof(ItemAPIConvention.GetById))]
         public async Task<IActionResult> Post(AddItemRequest request)
@@ -60,6 +74,12 @@ namespace REST_API.Controllers
             return CreatedAtAction(nameof(GetById), new {id = result.Id}, null);
         }
 
+        /// <summary>
+        /// Updates existing Item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut("{id:guid}")]
         [ItemExists]
         [ApiConventionMethod(typeof(ItemAPIConvention), nameof(ItemAPIConvention.GetById))]
@@ -67,9 +87,18 @@ namespace REST_API.Controllers
         {
             request.Id = id;
             var result = await _itemService.EditItemAsync(request);
+            if (result == null)
+            {
+                return NotFound();
+            }
             return Ok(result);
         }
 
+        /// <summary>
+        /// Deletes selected Item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id:guid}")]
         [ItemExists]
         [ApiConventionMethod(typeof(ItemAPIConvention), nameof(ItemAPIConvention.Delete))]
