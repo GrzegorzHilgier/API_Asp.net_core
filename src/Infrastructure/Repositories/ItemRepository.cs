@@ -38,6 +38,8 @@ namespace Infrastructure.Repositories
                 .OrderBy(c => c.Name)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
+                .Include(item => item.Artist)
+                .Include(item => item.Genre)
                 .AsNoTracking()
                 .ToListAsync();
         }

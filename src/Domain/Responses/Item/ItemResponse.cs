@@ -15,9 +15,7 @@ namespace Domain.Responses.Item
         public DateTimeOffset ReleaseDate { get; set; }
         public string Format { get; set; }
         public int AvailableStock { get; set; }
-        public Guid GenreId { get; set; }
         public GenreResponse Genre { get; set; }
-        public Guid ArtistId { get; set; }
         public ArtistResponse Artist { get; set; }
     }
 }
