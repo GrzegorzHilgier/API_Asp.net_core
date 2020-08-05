@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.IO;
 using System.Threading.Tasks;
 using Infrastructure;
 using AutoMapper;
@@ -18,6 +19,7 @@ using Microsoft.Extensions.Logging;
 using Polly;
 using REST_API.Extensions;
 using REST_API.Middleware;
+using Microsoft.OpenApi.Models;
 
 namespace REST_API
 {
@@ -37,6 +39,13 @@ namespace REST_API
                 .AddEFInfrastructure(Configuration.GetSection("DataSource:ConnectionString").Value)
                 .AddAutoMapper()
                 .AddDomainServices()
+                .AddSwaggerGen(configuration =>
+                {
+                    // Set the comments path for the Swagger JSON and UI.
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    configuration.IncludeXmlComments(xmlPath);
+                })
                 .AddControllers().AddValidation();
         }
 
@@ -44,6 +53,11 @@ namespace REST_API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app
+                .UseSwagger()
+                .UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                })
                 .UseMiddleware<ResponseTimeMiddlewareAsync>()
                 .UseHttpsRedirection()
                 .UseRouting()
