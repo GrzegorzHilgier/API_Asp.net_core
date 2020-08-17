@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.SchemaDefinitions
 {
-    class ArtistEntitySchemaDefinition : IEntityTypeConfiguration<Artist>
+    internal class ArtistEntitySchemaDefinition : IEntityTypeConfiguration<Artist>
     {
         public void Configure(EntityTypeBuilder<Artist> builder)
         {

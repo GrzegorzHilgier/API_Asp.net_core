@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Repositories;
 using Domain.Requests.Item;
 using Domain.Responses.Item;

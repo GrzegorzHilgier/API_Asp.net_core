@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Requests.Artist;
 using Domain.Requests.Genre;
 using Domain.Requests.Item;

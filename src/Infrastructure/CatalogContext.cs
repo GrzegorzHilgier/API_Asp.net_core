@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Repositories;
 using Infrastructure.SchemaDefinitions;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ItemEntityScheamDefinition());
+            modelBuilder.ApplyConfiguration(new ItemEntitySchemaDefinition());
             modelBuilder.ApplyConfiguration(new GenreEntitySchemaConfiguration());
             modelBuilder.ApplyConfiguration(new ArtistEntitySchemaDefinition());
             base.OnModelCreating(modelBuilder);

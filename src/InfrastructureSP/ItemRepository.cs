@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Repositories;
 using Microsoft.Data.SqlClient;
 
