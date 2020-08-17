@@ -33,6 +33,7 @@ namespace REST_API.Extensions
             var mockMapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new CatalogProfile());
+                cfg.AddProfile(new CartProfile());
             });
             var mapperInstance = mockMapper.CreateMapper();
             services.AddSingleton(mapperInstance);

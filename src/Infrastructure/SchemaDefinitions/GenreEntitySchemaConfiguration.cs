@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.SchemaDefinitions
 {
-    class GenreEntitySchemaConfiguration : IEntityTypeConfiguration<Genre>
+    internal class GenreEntitySchemaConfiguration : IEntityTypeConfiguration<Genre>
     {
         public void Configure(EntityTypeBuilder<Genre> builder)
         {

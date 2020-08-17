@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Requests.Item;
 using Domain.Services;
 using Fixtures;

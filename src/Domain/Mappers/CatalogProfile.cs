@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.Requests.Item;
 using Domain.Responses.Item;
 using AutoMapper;
+using Domain.Entities.Catalog;
 using Domain.Requests.Artist;
 using Domain.Requests.Genre;
 

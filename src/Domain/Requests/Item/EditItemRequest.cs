@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 
 namespace Domain.Requests.Item
 {

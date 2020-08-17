@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Repositories;
 using Domain.Requests.Artist;
 using Domain.Requests.Genre;

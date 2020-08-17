@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Fixtures;
 using Infrastructure.Repositories;
 using Xunit;

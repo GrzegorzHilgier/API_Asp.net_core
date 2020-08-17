@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Fixtures;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;

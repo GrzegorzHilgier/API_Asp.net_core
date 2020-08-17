@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Catalog;
 using Infrastructure;
 using Infrastructure.Tests.Extensions;
 using Microsoft.EntityFrameworkCore;
