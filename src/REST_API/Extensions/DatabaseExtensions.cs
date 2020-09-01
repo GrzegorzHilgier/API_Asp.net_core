@@ -14,19 +14,19 @@ namespace REST_API.Extensions
     public static class DatabaseExtensions
     {
         // ReSharper disable once InconsistentNaming
-        public static IServiceCollection AddEFInfrastructure(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddEFInfrastructure(this IServiceCollection services, string connectionStringCatalogDatabase, string connectionStringCartDatabase)
         {
             services
                 .AddDbContext<CatalogContext>(contextOptions =>
                 {
                     contextOptions.UseSqlServer(
-                        connectionString,
+                        connectionStringCatalogDatabase,
                         serverOptions => { serverOptions.MigrationsAssembly(typeof(Startup).Assembly.FullName); });
                 })
                 .AddDbContext<CartContext>(contextOptions =>
                 {
                     contextOptions.UseSqlServer(
-                        connectionString,
+                        connectionStringCartDatabase,
                         serverOptions => { serverOptions.MigrationsAssembly(typeof(Startup).Assembly.FullName); });
                 });
             services.AddScoped<IItemRepository, ItemRepository>();

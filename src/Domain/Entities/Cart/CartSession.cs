@@ -8,8 +8,8 @@ namespace Domain.Entities.Cart
     {
         public Guid Id { get; set; }
         public IEnumerable<CartItem> Items { get; set; }
-        public CartUser User { get; set; }
-        public string UserId { get; set; }
+        //public CartUser User { get; set; }
+        //public string UserId { get; set; }
         public DateTimeOffset ValidityDate { get; set; }
     }
 }

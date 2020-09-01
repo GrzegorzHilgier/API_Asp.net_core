@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace REST_API.Migrations.Cart
 {
     [DbContext(typeof(CartContext))]
-    [Migration("20200817093206_Init")]
-    partial class Init
+    [Migration("20200901185555_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,9 @@ namespace REST_API.Migrations.Cart
                     b.Property<Guid>("CartSessionId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -37,7 +40,7 @@ namespace REST_API.Migrations.Cart
 
                     b.HasIndex("CartSessionId");
 
-                    b.ToTable("Items","cart");
+                    b.ToTable("CartItems","cart");
                 });
 
             modelBuilder.Entity("Domain.Entities.Cart.CartSession", b =>
@@ -46,28 +49,12 @@ namespace REST_API.Migrations.Cart
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTimeOffset>("ValidityDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("CartSession","cart");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Cart.CartUser", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("CartUser","cart");
                 });
 
             modelBuilder.Entity("Domain.Entities.Cart.CartItem", b =>
@@ -75,15 +62,6 @@ namespace REST_API.Migrations.Cart
                     b.HasOne("Domain.Entities.Cart.CartSession", "CartSession")
                         .WithMany("Items")
                         .HasForeignKey("CartSessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Cart.CartSession", b =>
-                {
-                    b.HasOne("Domain.Entities.Cart.CartUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

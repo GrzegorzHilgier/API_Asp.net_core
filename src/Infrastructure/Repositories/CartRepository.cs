@@ -38,7 +38,7 @@ namespace Infrastructure.Repositories
                 .CartSessions
                 .Where(c => c.Id == id)
                 .Include(x => x.Items)
-                .Include(y => y.User)
+                //.Include(y => y.User)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
         }

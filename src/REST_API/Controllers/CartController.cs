@@ -63,7 +63,7 @@ namespace REST_API.Controllers
         public async Task<IActionResult> Post(CreateCartCommand request)
         {
             var result = await _mediator.Send(request);
-            return CreatedAtAction(nameof(GetById), new {id = result.Id});
+            return CreatedAtAction(nameof(GetById), new { result.Id }, value: null);
         }
 
         /// <summary>
