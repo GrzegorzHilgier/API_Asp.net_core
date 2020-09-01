@@ -11,10 +11,8 @@ namespace Infrastructure.SchemaDefinitions
     {
         public void Configure(EntityTypeBuilder<CartUser> builder)
         {
-            builder.ToTable("CartSession", CatalogContext.DEFAULT_SCHEMA);
-            builder.Property(k => k.Email)
-                .IsRequired()
-                .HasMaxLength(70);
+            builder.ToTable("CartUser", CartContext.DEFAULT_SCHEMA);
+            builder.HasKey(k => k.Email);
         }
     }
 }

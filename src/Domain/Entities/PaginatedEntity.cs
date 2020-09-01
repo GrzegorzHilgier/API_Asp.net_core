@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class PaginatedEntity<TEntity> where TEntity : class
+    public class PaginatedEntity<TEntity> 
     {
         public PaginatedEntity(int pageIndex, int pageSize, long total, IEnumerable<TEntity> data)
         {

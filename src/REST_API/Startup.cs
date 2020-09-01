@@ -6,6 +6,8 @@ using System.IO;
 using System.Threading.Tasks;
 using Infrastructure;
 using AutoMapper;
+using Domain.Commands;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +41,7 @@ namespace REST_API
                 .AddEFInfrastructure(Configuration.GetSection("DataSource:ConnectionString").Value)
                 .AddAutoMapper()
                 .AddDomainServices()
+                .AddMediatR(Assembly.GetExecutingAssembly(), typeof(CreateCartCommand).Assembly)
                 .AddSwaggerGen(configuration =>
                 {
                     // Set the comments path for the Swagger JSON and UI.

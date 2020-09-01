@@ -6,10 +6,12 @@ using Domain.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using REST_API.Conventions;
 using REST_API.Filters;
 
 namespace REST_API.Controllers
 {
+    [Produces("application/json")]
     [Route("api/cart")]
     [ApiController]
     [JsonException]
@@ -23,6 +25,18 @@ namespace REST_API.Controllers
         }
 
         [HttpGet]
+        [ApiConventionMethod(typeof(CartAPIConvention), nameof(CartAPIConvention.Get))]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _mediator.Send(new GetCartsCommand { PageSize = 10, PageIndex = 0 });
+            if (result.Data.Any())
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _mediator.Send(new GetCartCommand{Id = id});
