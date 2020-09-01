@@ -19,7 +19,7 @@ namespace REST_API.Filters
     {
         public JsonExceptionAttribute() : base(typeof(HttpCustomExceptionFilterImpl)) {}
 
-        private class HttpCustomExceptionFilterImpl : IExceptionFilter
+        public class HttpCustomExceptionFilterImpl : IExceptionFilter
         {
             private readonly IWebHostEnvironment _environment;
             private readonly ILogger<HttpCustomExceptionFilterImpl> _logger;

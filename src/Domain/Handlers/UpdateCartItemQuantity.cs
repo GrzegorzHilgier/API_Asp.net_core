@@ -39,7 +39,7 @@ namespace Domain.Handlers
             }
 
             cartDetail.Items.ToList().RemoveAll(x => x.Quantity <= 0);
-            var result = await _repository.AddOrUpdateAsync(cartDetail);
+            var result = await _repository.UpdateAsync(cartDetail);
             var response = _mapper.Map<CartSessionResponse>(result);
             return response;
         }

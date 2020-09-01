@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Commands;
+using Domain.Entities;
+using Domain.Responses.Cart;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,11 +26,15 @@ namespace REST_API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Gets paginated Carts.
+        /// </summary>
+        /// <returns><see cref="PaginatedEntity{TEntity}"/> of found Card.</returns>
         [HttpGet]
         [ApiConventionMethod(typeof(CartAPIConvention), nameof(CartAPIConvention.Get))]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
         {
-            var result = await _mediator.Send(new GetCartsCommand { PageSize = 10, PageIndex = 0 });
+            var result = await _mediator.Send(new GetCartsCommand { PageSize = pageSize, PageIndex = pageIndex });
             if (result.Data.Any())
             {
                 return Ok(result);
@@ -36,6 +42,11 @@ namespace REST_API.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Gets Cart by Id.
+        /// </summary>
+        /// <param name="id">Requested Id.</param>
+        /// <returns><see cref="CartSessionResponse"/> of requested cart.</returns>
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -43,6 +54,11 @@ namespace REST_API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Posts a Cart.
+        /// </summary>
+        /// <param name="request">Create cart command data.</param>
+        /// <returns><see cref="Guid"/> of created cart.</returns>
         [HttpPost]
         public async Task<IActionResult> Post(CreateCartCommand request)
         {
@@ -50,6 +66,12 @@ namespace REST_API.Controllers
             return CreatedAtAction(nameof(GetById), new {id = result.Id});
         }
 
+        /// <summary>
+        /// Puts an item in cart.
+        /// </summary>
+        /// <param name="cartId">Requested cart.</param>
+        /// <param name="id">Updated item.</param>
+        /// <returns></returns>
         [HttpPut("{cartId:guid}/items/{id:guid}")]
         public async Task<IActionResult> Put(Guid cartId, Guid id)
         {
@@ -62,6 +84,13 @@ namespace REST_API.Controllers
                 });
             return Ok(result);
         }
+
+        /// <summary>
+        /// Deletes an item in cart.
+        /// </summary>
+        /// <param name="cartId">Requested cart.</param>
+        /// <param name="id">Updated item.</param>
+        /// <returns></returns>
         [HttpDelete("{cartId:guid}/items/{id:guid}")]
         public async Task<IActionResult> Delete(Guid cartId, Guid id)
         {

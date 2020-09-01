@@ -11,6 +11,7 @@ namespace Domain.Repositories
         Task<IEnumerable<Guid>> GetCarts(int pageSize, int pageIndex);
         long Count { get; }
         Task<CartSession> GetAsync(Guid id);
-        Task<CartSession> AddOrUpdateAsync(CartSession item);
+        Task<CartSession> AddAsync(CartSession item);
+        Task<CartSession> UpdateAsync(CartSession item);
     }
 }

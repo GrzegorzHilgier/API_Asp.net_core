@@ -36,18 +36,18 @@ namespace REST_API.Controllers
         public async Task<IActionResult> Get([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
         {
             var result = await _itemService.GetItemsAsync(pageSize, pageIndex);
-            if (result.Data.Any())
+            if (!result.Data.Any())
             {
-                return Ok(result);
+                return NotFound();
             }
-            return NotFound();
+            return Ok(result);
         }
 
         /// <summary>
         /// Gets single item by Id.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Requested id.</param>
+        /// <returns><see cref="ItemResponse"/></returns>
         [HttpGet("{id:guid}")]
         [ItemExists]
         [ApiConventionMethod(typeof(ItemAPIConvention), nameof(ItemAPIConvention.GetById))]
@@ -65,7 +65,7 @@ namespace REST_API.Controllers
         /// Creates new Item.
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns><see cref="ItemResponse"/></returns>
         [HttpPost]
         [ApiConventionMethod(typeof(ItemAPIConvention), nameof(ItemAPIConvention.GetById))]
         public async Task<IActionResult> Post(AddItemRequest request)
@@ -79,7 +79,7 @@ namespace REST_API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns><see cref="ItemResponse"/></returns>
         [HttpPut("{id:guid}")]
         [ItemExists]
         [ApiConventionMethod(typeof(ItemAPIConvention), nameof(ItemAPIConvention.GetById))]
