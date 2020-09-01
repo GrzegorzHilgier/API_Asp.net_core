@@ -19,12 +19,17 @@ namespace Infrastructure.Repositories
         {
             _cartContext = cartContext;
         }
-        public IEnumerable<Guid> GetCarts()
+
+        public long Count => _cartContext.CartSessions.Count();
+
+        public async Task<IEnumerable<Guid>> GetCarts(int pageSize, int pageIndex)
         {
-            return _cartContext
+            return await _cartContext
                 .CartSessions
+                .Skip(pageSize * pageIndex)
+                .Take(pageSize)
                 .Select(c => c.Id)
-                .ToArray();
+                .ToListAsync();
         }
 
         public async Task<CartSession> GetAsync(Guid id)
@@ -43,14 +48,13 @@ namespace Infrastructure.Repositories
             var existingSession = await GetAsync(item.Id);
             if (existingSession == null)
             {
-                await _cartContext.AddAsync(item);
+                _cartContext.Add(item);
+                await UnitOfWork.SaveChangesAsync();
                 return await GetAsync(item.Id);
             }
-            else
-            {
-                existingSession = item;
-                return existingSession;
-            }
+
+            existingSession = item;
+            return existingSession;
         }
     }
 }

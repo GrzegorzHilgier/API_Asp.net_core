@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace REST_API.Migrations
+namespace REST_API.Migrations.Catalog
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20200803145607_Initial")]
+    [Migration("20200831080237_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace REST_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Domain.Entities.Artist", b =>
+            modelBuilder.Entity("Domain.Entities.Catalog.Artist", b =>
                 {
                     b.Property<Guid>("ArtistId")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace REST_API.Migrations
                     b.ToTable("Artists","catalog");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Genre", b =>
+            modelBuilder.Entity("Domain.Entities.Catalog.Genre", b =>
                 {
                     b.Property<Guid>("GenreId")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace REST_API.Migrations
                     b.ToTable("Genres","catalog");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Item", b =>
+            modelBuilder.Entity("Domain.Entities.Catalog.Item", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,15 +102,15 @@ namespace REST_API.Migrations
                     b.ToTable("Items","catalog");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Item", b =>
+            modelBuilder.Entity("Domain.Entities.Catalog.Item", b =>
                 {
-                    b.HasOne("Domain.Entities.Artist", "Artist")
+                    b.HasOne("Domain.Entities.Catalog.Artist", "Artist")
                         .WithMany("Items")
                         .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Genre", "Genre")
+                    b.HasOne("Domain.Entities.Catalog.Genre", "Genre")
                         .WithMany("Items")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -22,10 +22,17 @@ namespace REST_API.Extensions
                     contextOptions.UseSqlServer(
                         connectionString,
                         serverOptions => { serverOptions.MigrationsAssembly(typeof(Startup).Assembly.FullName); });
+                })
+                .AddDbContext<CartContext>(contextOptions =>
+                {
+                    contextOptions.UseSqlServer(
+                        connectionString,
+                        serverOptions => { serverOptions.MigrationsAssembly(typeof(Startup).Assembly.FullName); });
                 });
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
             return services;
         }
 

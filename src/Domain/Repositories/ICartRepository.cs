@@ -8,7 +8,8 @@ namespace Domain.Repositories
 {
     public interface ICartRepository
     {
-        IEnumerable<Guid> GetCarts();
+        Task<IEnumerable<Guid>> GetCarts(int pageSize, int pageIndex);
+        long Count { get; }
         Task<CartSession> GetAsync(Guid id);
         Task<CartSession> AddOrUpdateAsync(CartSession item);
     }

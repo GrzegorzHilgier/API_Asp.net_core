@@ -12,7 +12,7 @@ namespace Infrastructure.SchemaDefinitions
     {
         public void Configure(EntityTypeBuilder<CartItem> builder)
         {
-            builder.ToTable("Items", CatalogContext.DEFAULT_SCHEMA);
+            builder.ToTable("Items", CartContext.DEFAULT_SCHEMA);
 
             builder.HasKey(k => k.Id);
 

@@ -12,9 +12,9 @@ namespace Infrastructure.SchemaDefinitions
     {
         public void Configure(EntityTypeBuilder<CartSession> builder)
         {
-            builder.ToTable("CartSession", CatalogContext.DEFAULT_SCHEMA);
+            builder.ToTable("CartSession", CartContext.DEFAULT_SCHEMA);
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.User)
+            builder.Property(p => p.UserId)
                 .IsRequired();
             builder.Property(p => p.ValidityDate)
                 .IsRequired();
