@@ -38,17 +38,17 @@ namespace Domain.Handlers
                 var item = await _itemRepository.GetAsync(id);
                 if (item != default)
                 {
-                    items.Add(new CartItem{ItemId = item.Id});
+                    items.Add(new CartItem{ItemId = item.Id, Quantity = 1});
                 }
             });
 
             var entity = new CartSession
             {
-                User = new CartUser
-                {
-                    Email = command.UserEmail
-                },
-                Items = items,
+                //User = new CartUser
+                //{
+                //    Email = command.UserEmail
+                //},
+                Items = new List<CartItem>(items),
                 ValidityDate = DateTimeOffset.Now.AddDays(1),
             };
             var session = await _repository.AddAsync(entity);

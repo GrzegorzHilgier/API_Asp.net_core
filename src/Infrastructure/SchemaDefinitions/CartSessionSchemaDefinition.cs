@@ -14,8 +14,8 @@ namespace Infrastructure.SchemaDefinitions
         {
             builder.ToTable("CartSession", CartContext.DEFAULT_SCHEMA);
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.UserId)
-                .IsRequired();
+            //builder.Property(p => p.UserId)
+            //    .IsRequired();
             builder.Property(p => p.ValidityDate)
                 .IsRequired();
         }

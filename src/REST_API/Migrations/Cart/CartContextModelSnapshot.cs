@@ -47,28 +47,12 @@ namespace REST_API.Migrations.Cart
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTimeOffset>("ValidityDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("CartSession","cart");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Cart.CartUser", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("CartUser","cart");
                 });
 
             modelBuilder.Entity("Domain.Entities.Cart.CartItem", b =>
@@ -76,15 +60,6 @@ namespace REST_API.Migrations.Cart
                     b.HasOne("Domain.Entities.Cart.CartSession", "CartSession")
                         .WithMany("Items")
                         .HasForeignKey("CartSessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Cart.CartSession", b =>
-                {
-                    b.HasOne("Domain.Entities.Cart.CartUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

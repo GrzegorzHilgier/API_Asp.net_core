@@ -38,7 +38,8 @@ namespace REST_API
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddEFInfrastructure(Configuration.GetSection("DataSource:ConnectionString").Value)
+                .AddEFInfrastructure(Configuration.GetSection("DataSource:ConnectionStringCatalogDatabase").Value, 
+                                     Configuration.GetSection("DataSource:ConnectionStringCartDatabase").Value)
                 .AddAutoMapper()
                 .AddDomainServices()
                 .AddMediatR(Assembly.GetExecutingAssembly(), typeof(CreateCartCommand).Assembly)

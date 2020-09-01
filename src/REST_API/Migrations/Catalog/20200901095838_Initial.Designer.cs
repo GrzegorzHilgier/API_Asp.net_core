@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace REST_API.Migrations.Catalog
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20200831080237_Initial")]
+    [Migration("20200901095838_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

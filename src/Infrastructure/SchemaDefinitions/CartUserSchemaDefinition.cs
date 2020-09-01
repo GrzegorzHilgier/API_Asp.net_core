@@ -12,7 +12,9 @@ namespace Infrastructure.SchemaDefinitions
         public void Configure(EntityTypeBuilder<CartUser> builder)
         {
             builder.ToTable("CartUser", CartContext.DEFAULT_SCHEMA);
-            builder.HasKey(k => k.Email);
+            builder.HasKey(t => t.Id);
+            builder.Property(k => k.Email)
+                   .IsRequired();
         }
     }
 }

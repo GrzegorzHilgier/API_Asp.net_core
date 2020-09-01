@@ -14,7 +14,7 @@ namespace Infrastructure
     {
         public const string DEFAULT_SCHEMA = "cart";
         public DbSet<CartSession> CartSessions { get; set; }
-        public DbSet<CartUser> CartUsers { get; set; }
+        //public DbSet<CartUser> CartUsers { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public CartContext(DbContextOptions<CartContext> options) : base(options){}
 
@@ -22,7 +22,7 @@ namespace Infrastructure
         {
             modelBuilder.ApplyConfiguration(new CartItemSchemaDefinition());
             modelBuilder.ApplyConfiguration(new CartSessionSchemaDefinition());
-            modelBuilder.ApplyConfiguration(new CartUserSchemaDefinition());
+            //modelBuilder.ApplyConfiguration(new CartUserSchemaDefinition());
             base.OnModelCreating(modelBuilder);
         }
 
