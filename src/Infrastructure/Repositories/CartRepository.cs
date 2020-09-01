@@ -43,18 +43,25 @@ namespace Infrastructure.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<CartSession> AddOrUpdateAsync(CartSession item)
+        public async Task<CartSession> AddAsync(CartSession item)
         {
             var existingSession = await GetAsync(item.Id);
-            if (existingSession == null)
-            {
-                _cartContext.Add(item);
-                await UnitOfWork.SaveChangesAsync();
-                return await GetAsync(item.Id);
-            }
+            if (existingSession != null) return default;
+            _cartContext.Add(item);
+            await UnitOfWork.SaveChangesAsync();
+            return await GetAsync(item.Id);
 
-            existingSession = item;
-            return existingSession;
         }
+
+        public async Task<CartSession> UpdateAsync(CartSession item)
+        {
+            var existingSession = await GetAsync(item.Id);
+            if (existingSession == null) return default;
+            existingSession = item;
+            await UnitOfWork.SaveChangesAsync();
+            return await GetAsync(item.Id);
+
+        }
+
     }
 }
