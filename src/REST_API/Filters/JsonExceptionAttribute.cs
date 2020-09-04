@@ -12,11 +12,14 @@ using REST_API.Exceptions;
 
 namespace REST_API.Filters
 {
+    /// <summary>
+    /// Extends Http response with json exception message.
+    /// </summary>
     public class JsonExceptionAttribute : TypeFilterAttribute
     {
         public JsonExceptionAttribute() : base(typeof(HttpCustomExceptionFilterImpl)) {}
 
-        private class HttpCustomExceptionFilterImpl : IExceptionFilter
+        public class HttpCustomExceptionFilterImpl : IExceptionFilter
         {
             private readonly IWebHostEnvironment _environment;
             private readonly ILogger<HttpCustomExceptionFilterImpl> _logger;
@@ -34,7 +37,7 @@ namespace REST_API.Filters
                 var json = new JsonErrorPayload{EventId = eventId.Id};
                 if (_environment.IsDevelopment())
                 {
-                    json.DetailedMessage = context.Exception;
+                    json.DetailedMessage = context.Exception.Message;
                 }
 
                 const int status = (int) HttpStatusCode.InternalServerError;

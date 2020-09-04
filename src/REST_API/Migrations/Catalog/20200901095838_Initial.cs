@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace REST_API.Migrations
+namespace REST_API.Migrations.Catalog
 {
     public partial class Initial : Migration
     {

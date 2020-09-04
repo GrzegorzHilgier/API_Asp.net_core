@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.SchemaDefinitions
 {
-    class ItemEntityScheamDefinition : IEntityTypeConfiguration<Item>
+    internal class ItemEntitySchemaDefinition : IEntityTypeConfiguration<Item>
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {

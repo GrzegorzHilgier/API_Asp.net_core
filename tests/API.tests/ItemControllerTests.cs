@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Requests.Item;
 using Domain.Responses.Item;
 using Fixtures;

@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.Requests.Item;
 using Domain.Responses.Item;
 using AutoMapper;
+using Domain.Entities.Catalog;
 using Domain.Requests.Artist;
 using Domain.Requests.Genre;
 
@@ -17,9 +18,11 @@ namespace Domain.Mappers
             CreateMap<ItemResponse, Item>().ReverseMap();
             CreateMap<AddItemRequest, Item>().ReverseMap();
             CreateMap<EditItemRequest, Item>().ReverseMap();
+            CreateMap<AddGenreRequest, Genre>().ReverseMap();
             CreateMap<GenreResponse, Genre>().ReverseMap();
             CreateMap<GetGenreRequest, Genre>().ReverseMap();
             CreateMap<ArtistResponse, Artist>().ReverseMap();
+            CreateMap<AddArtistRequest, Artist>().ReverseMap();
             CreateMap<GetArtistRequest, Artist>().ReverseMap();
             CreateMap<Price, PriceResponse>().ReverseMap();
         }

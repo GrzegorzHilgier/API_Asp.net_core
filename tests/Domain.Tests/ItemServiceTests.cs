@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.Catalog;
 using Domain.Requests.Item;
 using Domain.Services;
 using Fixtures;
@@ -64,8 +65,6 @@ namespace Domain.Tests
             var result = await _itemService.AddItemAsync(testItem);
             Assert.Equal(testItem.Name, result.Name);
             Assert.Equal(testItem.Description, result.Description);
-            Assert.Equal(testItem.GenreId, result.GenreId);
-            Assert.Equal(testItem.ArtistId, result.ArtistId);
             Assert.Equal(testItem.Price.Amount, result.Price.Amount);
             Assert.Equal(testItem.Price.Currency, result.Price.Currency);
         }
